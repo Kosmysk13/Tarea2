@@ -6,6 +6,7 @@ package org.example;
 public class Expendedor{
     protected int preciosB;
     protected int preciosD;
+    protected Producto p;
 
     private DepositoB depcoca;
     private DepositoB depsprite;
@@ -17,6 +18,7 @@ public class Expendedor{
     public static final int  SNICKERS=3;
     public static final int  SUPER8=4;
     DepositoM monVu = new DepositoM();
+    DepositoM monPa = new DepositoM();
 
     /**
      * Metodo constructor, se encarga de crear y almacenar los productos, y definir los precios de cada uno
@@ -52,8 +54,7 @@ public class Expendedor{
      * @throws NoHayProductoException Si no quedan productos del tipo que se pide en el almacen correspondiente, entrega este mensaje de error
      * @throws PagoInsuficienteException Si la moneda es de valor inferior al precio del producto, se entrega este mensaje de error
      */
-    public Producto comprarProducto(Moneda mon, int cualP) throws PagoIncorrectoException, NoHayProductoException,PagoInsuficienteException{
-        Producto p = null;
+    public void comprarProducto(Moneda mon, int cualP) throws PagoIncorrectoException, NoHayProductoException,PagoInsuficienteException{
         if (mon!=null){
             if ((cualP==1)||(cualP==2)){
                 if (mon.getValor()>=preciosB){
@@ -67,6 +68,7 @@ public class Expendedor{
                             Moneda mon1 = new Moneda100();
                             monVu.addMoneda(mon1);
                         }
+                        monPa.addMoneda(mon);
                     }else {
                         Moneda mon1 = mon;
                         monVu.addMoneda(mon1);
@@ -93,6 +95,7 @@ public class Expendedor{
                             Moneda mon1 = new Moneda100();
                             monVu.addMoneda(mon1);
                         }
+                        monPa.addMoneda(mon);
                     }else {
                         Moneda mon1 = mon;
                         monVu.addMoneda(mon1);
@@ -108,7 +111,6 @@ public class Expendedor{
                     throw new PagoInsuficienteException("El monto ingresado no es suficiente");
                 }
             }
-            return p;
         }else{
             throw new PagoIncorrectoException("Moneda invalida : " + mon);
         }
@@ -121,5 +123,8 @@ public class Expendedor{
     public Moneda getVuelto(){
         Moneda m = monVu.getMoneda();
         return m;
+    }
+    public Producto getProducto(){
+        return p;
     }
 }

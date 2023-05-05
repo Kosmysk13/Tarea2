@@ -1,6 +1,8 @@
 package org.example;
 public class Main {
     public static void main(String[] args){
+        Ventana ven = new Ventana();
+        /*
         Moneda mon1 = new Moneda1000();
         Moneda mon2 = new Moneda1000();
         Moneda mon3 = new Moneda1000();
@@ -28,6 +30,6 @@ public class Main {
         System.out.println(c1.queConsumio()+" $"+c1.cuantoVuelto());
         System.out.println(c2.queConsumio()+" $"+c2.cuantoVuelto());
         System.out.println(c3.queConsumio()+" $"+c3.cuantoVuelto());
-        System.out.println(c4.queConsumio()+" $"+c4.cuantoVuelto());
+        System.out.println(c4.queConsumio()+" $"+c4.cuantoVuelto());*/
     }
 }
