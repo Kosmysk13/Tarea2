@@ -3,8 +3,8 @@ package org.example;
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelComprador extends JPanel {
-    public PanelComprador(){
+public class PanelDepB extends JPanel{
+    public PanelDepB(){
 
     }
     public void paint (Graphics g){
