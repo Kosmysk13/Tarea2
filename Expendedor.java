@@ -22,18 +22,17 @@ public class Expendedor{
 
     /**
      * Metodo constructor, se encarga de crear y almacenar los productos, y definir los precios de cada uno
-     * @param numProductos Indica cuanto stock de productos habra de bebidas y dulces por igual
-     * @param precioBebidas Indica el precio de las bebidas por igual
-     * @param precioDulces Indica el precio de los dulces por igual
+     * precioB Indica el precio de las bebidas por igual
+     * precioD Indica el precio de los dulces por igual
      */
-    public Expendedor(int numProductos, int precioBebidas, int precioDulces){
-        preciosB = precioBebidas;
-        preciosD = precioDulces;
+    public Expendedor(){
+        preciosB = 1000;
+        preciosD = 500;
         depcoca = new DepositoB();
         depsprite = new DepositoB();
         depsnickers = new DepositoD();
         depsuper8 = new DepositoD();
-        for (int i=0;i<numProductos;i++){
+        for (int i=0;i<10;i++){
             Bebida b1 = new CocaCola(100 + i);
             depcoca.addBebida(b1);
             Bebida b2 = new Sprite(200 + i);

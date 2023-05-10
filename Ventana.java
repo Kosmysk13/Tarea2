@@ -7,13 +7,13 @@ public class Ventana extends JFrame{
     private PanelPrincipal dp;
     private PanelBotones bp;
     public Ventana(){
-        super("Mi Ventana");
+        super("Mi Expendedor");
         this.setLayout(new BorderLayout());
         dp = new PanelPrincipal();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(dp,BorderLayout.CENTER);
         bp = new PanelBotones();
-        this.add(bp,BorderLayout.SOUTH);
+        this.add(bp);
         /*dp.setLayout(new GridLayout(3,2));
         JButton rB1 = new JButton("1");
         dp.add(rB1);
