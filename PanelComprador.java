@@ -20,65 +20,66 @@ public class PanelComprador extends JPanel implements ActionListener, MouseListe
         MonedasBots = new ButtonGroup();
         //pb = new PanelDepB();
         Moneda100Bot = new JRadioButton("Moneda 100");
-        Moneda100Bot.setBounds(625,150,125,50);
+        Moneda100Bot.setBounds(1000,110,150,75);
         Moneda100Bot.addActionListener(this);
         Moneda100Bot.setFocusable(false);
         Moneda100Bot.setBackground(new Color(205,225,243));
         MonedasBots.add(Moneda100Bot);
         this.add(Moneda100Bot);
         Moneda500Bot = new JRadioButton("Moneda 500");
-        Moneda500Bot.setBounds(750,150,125,50);
+        Moneda500Bot.setBounds(1000,185,150,75);
         Moneda500Bot.addActionListener(this);
         Moneda500Bot.setFocusable(false);
         Moneda500Bot.setBackground(new Color(205,225,243));
         MonedasBots.add(Moneda500Bot);
         this.add(Moneda500Bot);
         Moneda1000Bot = new JRadioButton("Moneda 1000");
-        Moneda1000Bot.setBounds(875,150,125,50);
+        Moneda1000Bot.setBounds(1000,260,150,75);
         Moneda1000Bot.addActionListener(this);
         Moneda1000Bot.setFocusable(false);
         Moneda1000Bot.setBackground(new Color(205,225,243));
+
         MonedasBots.add(Moneda1000Bot);
         this.add(Moneda1000Bot);
         Moneda1500Bot = new JRadioButton("Moneda 1500");
-        Moneda1500Bot.setBounds(999,150,125,50);
+        Moneda1500Bot.setBounds(1000,335,150,75);
         Moneda1500Bot.addActionListener(this);
         Moneda1500Bot.setFocusable(false);
         Moneda1500Bot.setBackground(new Color(205,225,243));
         MonedasBots.add(Moneda1500Bot);
         this.add(Moneda1500Bot);
         CocaColaBot = new JButton("CocaCola");
-        CocaColaBot.setBounds(625,200,250,50);
+        CocaColaBot.setBounds(650,110,150,150);
         CocaColaBot.addActionListener(this);
         CocaColaBot.setFocusable(false);
         this.add(CocaColaBot);
         SpriteBot = new JButton("Sprite");
-        SpriteBot.setBounds(875,200,250,50);
+        SpriteBot.setBounds(800,110,150,150);
         SpriteBot.addActionListener(this);
         SpriteBot.setFocusable(false);
         this.add(SpriteBot);
         SnickersBot = new JButton("Snickers");
-        SnickersBot.setBounds(625,250,250,50);
+        SnickersBot.setBounds(650,260,150,150);
         SnickersBot.addActionListener(this);
         SnickersBot.setFocusable(false);
         this.add(SnickersBot);
         Super8Bot = new JButton("Super 8");
-        Super8Bot.setBounds(875,250,250,50);
+        Super8Bot.setBounds(800,260,150,150);
         Super8Bot.addActionListener(this);
         Super8Bot.setFocusable(false);
         this.add(Super8Bot);
         ComprarBot = new JButton("Confirmar compra");
-        ComprarBot.setBounds(675,360,400,50);
+        ComprarBot.setBounds(695,440,400,50);
         ComprarBot.addActionListener(this);
         ComprarBot.setFocusable(false);
         this.add(ComprarBot);
         ComprarAgainBot = new JButton("Comprar nuevamente");
-        ComprarAgainBot.setBounds(650,430,200,50);
+        ComprarAgainBot.setBounds(670,510,200,50);
         ComprarAgainBot.addActionListener(this);
         ComprarAgainBot.setFocusable(false);
         this.add(ComprarAgainBot);
         ExitButton = new JButton("Salir");
-        ExitButton.setBounds(900,430,200,50);
+        ExitButton.setBounds(920,510,200,50);
         ExitButton.addActionListener(this);
         this.add(ExitButton);
 
@@ -90,9 +91,10 @@ public class PanelComprador extends JPanel implements ActionListener, MouseListe
     }
     public void paint (Graphics g1){
         g1.setColor(new Color(247, 220, 85));
-        g1.fillRect(600, 80, 550, 500);
+        g1.fillRect(600, 80, 600, 500);
         g1.setColor(Color.black);
-        g1.drawRect(600, 80, 550, 500);
+        g1.drawRect(600, 80, 600, 500);
+        g1.drawRect(999, 109, 151, 301);
     }
 
     @Override
