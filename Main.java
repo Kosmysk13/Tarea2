@@ -12,7 +12,7 @@ public class Main {
         } catch (NoHayProductoException e) {
             throw new RuntimeException(e);
         } catch (PagoInsuficienteException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e);S
         }
         System.out.println(c1.queConsumio()+" $"+c1.cuantoVuelto());*/
     }

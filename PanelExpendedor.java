@@ -1,12 +1,12 @@
 package org.example;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.util.jar.JarEntry;
-
 public class PanelExpendedor extends JPanel{
     protected PanelDepB pdb;
+    protected int[] Xs= {381,381,420,420};
+    protected int[] Ys= {80,580,540,120};
+
     Image cocalogo;
     Image spritelogo;
     Image snickerslogo;
@@ -21,9 +21,13 @@ public class PanelExpendedor extends JPanel{
     public void paint (Graphics g){
         super.paint(g);
         g.setColor(new Color(137,23,11));
-        g.fillRect(80, 80, 300, 500);
+        g.fillRect(80, 80, 300, 500);                               //Expendedor
         g.setColor(Color.black);
-        g.drawRect(80, 80, 300, 500);
+        g.drawRect(80, 80, 300, 500);                               //Borde del expendedor
+        g.setColor(new Color(80,23,11));
+        g.fillPolygon(Xs,Ys,4);
+        g.setColor(Color.black);
+        g.drawPolygon(Xs,Ys,4);
         g.setColor(new Color (199,219,219));
         g.fillRect(93, 93, 220, 400);                               //"Vidrio"
         g.setColor(Color.black);
