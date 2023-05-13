@@ -32,7 +32,7 @@ public class Expendedor{
         depsprite = new DepositoB();
         depsnickers = new DepositoD();
         depsuper8 = new DepositoD();
-        for (int i=0;i<10;i++){
+        for (int i=0;i<3;i++){
             Bebida b1 = new CocaCola(100 + i);
             depcoca.addBebida(b1);
             Bebida b2 = new Sprite(200 + i);

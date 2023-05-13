@@ -32,15 +32,15 @@ public class PanelExpendedor extends JPanel{
         g.fillRect(93, 93, 220, 400);                               //"Vidrio"
         g.setColor(Color.black);
         g.drawRect(93, 93, 220, 400);
-        g.setColor(Color.white);
+        g.setColor(new Color(171, 178, 185));
         g.fillRect(330, 200, 30, 20);                                //Entrada moneda
         g.setColor(Color.black);
         g.drawRect(330, 200, 30, 20);
-        g.setColor(Color.white);
+        g.setColor(new Color(171, 178, 185));
         g.fillRect(330, 465, 30, 20);                                //Salida moneda
         g.setColor(Color.black);
         g.drawRect(330, 465, 30, 20);
-        g.setColor(Color.white);
+        g.setColor(new Color(171, 178, 185));
         g.fillRect(93, 520, 90, 30);                                 //Entrega de Producto
         g.setColor(Color.black);
         g.drawRect(93, 520, 90, 30);

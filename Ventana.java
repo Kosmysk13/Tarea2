@@ -8,7 +8,7 @@ public class Ventana extends JFrame{
     public Ventana(){
         super("Mi Expendedor");
         this.setLayout(new BorderLayout());
-        this.setBackground(new Color(205,225,243));
+        this.setBackground(new Color(171, 235, 198 ));
         dp = new PanelPrincipal();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(dp);                        //BOTONES

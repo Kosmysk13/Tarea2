@@ -12,7 +12,7 @@ public class PanelPrincipal extends JPanel {
         exp = new PanelExpendedor();
         this.add(com);
         this.setSize(1280,1024);
-        this.setBackground(new Color(205,225,243));
+        this.setBackground(new Color(171, 235, 198 ));
         this.setVisible(true);
     }
     public void paint (Graphics g){

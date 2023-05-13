@@ -8,6 +8,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class PanelComprador extends JPanel implements ActionListener, MouseListener {
+    Comprador com=null;
+    Expendedor exp = new Expendedor();
+    int cualP=0;
     int auxCompra=0;
     protected Moneda mon;
     protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarBot,ComprarAgainBot,ExitButton;
@@ -107,19 +110,35 @@ public class PanelComprador extends JPanel implements ActionListener, MouseListe
         }
         if (auxCompra==0){
             if (e.getSource()==CocaColaBot){
+                cualP = 1;
                 System.out.println("Coca");
                 auxCompra=1;
             }else if (e.getSource()==SpriteBot){
+                cualP = 2;
                 System.out.println("Sprite");
                 auxCompra=1;
             }else if (e.getSource()==SnickersBot){
+                cualP = 3;
                 System.out.println("Snickers");
                 auxCompra=1;
             }else if (e.getSource()==Super8Bot){
+                cualP = 4;
                 System.out.println("Super 8");
                 auxCompra=1;
             }
         }else{
+            if (e.getSource()==ComprarBot){
+                try {
+                    com = new Comprador(mon,cualP,exp);
+                } catch (PagoIncorrectoException ex) {
+                    throw new RuntimeException(ex);
+                } catch (NoHayProductoException ex) {
+                    throw new RuntimeException(ex);
+                } catch (PagoInsuficienteException ex) {
+                    throw new RuntimeException(ex);
+                }
+                System.out.println(com.queConsumio());
+            }
             if (e.getSource()==ComprarAgainBot){
                 auxCompra=0;
             }
