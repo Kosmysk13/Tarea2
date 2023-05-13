@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
 public class PanelComprador extends JPanel implements ActionListener, MouseListener {
     int auxCompra=0;
     protected Moneda mon;
-    protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarAgainBot,ExitButton;
+    protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarBot,ComprarAgainBot,ExitButton;
     protected ButtonGroup MonedasBots;
     protected JRadioButton Moneda100Bot,Moneda500Bot,Moneda1000Bot,Moneda1500Bot;
     public PanelComprador(){
@@ -64,13 +64,18 @@ public class PanelComprador extends JPanel implements ActionListener, MouseListe
         Super8Bot.addActionListener(this);
         Super8Bot.setFocusable(false);
         this.add(Super8Bot);
+        ComprarBot = new JButton("Confirmar compra");
+        ComprarBot.setBounds(675,360,400,50);
+        ComprarBot.addActionListener(this);
+        ComprarBot.setFocusable(false);
+        this.add(ComprarBot);
         ComprarAgainBot = new JButton("Comprar nuevamente");
         ComprarAgainBot.setBounds(650,430,200,50);
         ComprarAgainBot.addActionListener(this);
         ComprarAgainBot.setFocusable(false);
         this.add(ComprarAgainBot);
         ExitButton = new JButton("Salir");
-        ExitButton.setBounds(950,430,100,50);
+        ExitButton.setBounds(900,430,200,50);
         ExitButton.addActionListener(this);
         this.add(ExitButton);
 
