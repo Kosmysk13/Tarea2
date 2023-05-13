@@ -3,7 +3,7 @@ package org.example;
 import javax.swing.*;
 import java.awt.*;
 public class PanelExpendedor extends JPanel{
-    protected PanelDepB pdb;
+    protected PanelDepP pdb;
     protected int[] Xs= {381,381,420,420};
     protected int[] Ys= {80,580,540,120};
 
@@ -12,7 +12,7 @@ public class PanelExpendedor extends JPanel{
     Image snickerslogo;
     Image super8logo;
     public PanelExpendedor(){
-        pdb = new PanelDepB();
+        pdb = new PanelDepP();
         cocalogo = new ImageIcon("cocalogo1.png").getImage();
         spritelogo = new ImageIcon("spritelogo.png").getImage();
         snickerslogo = new ImageIcon("snickerslogo.png").getImage();

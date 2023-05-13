@@ -3,7 +3,7 @@ package org.example;
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelDepB extends JPanel{
+public class PanelDepP extends JPanel{
     int posX;
     int posY;
     Timer timer;
@@ -15,7 +15,7 @@ public class PanelDepB extends JPanel{
     int yVel=1;
     int x=0;
     int y=0;
-    public PanelDepB(){
+    public PanelDepP(){
         this.setPreferredSize(new Dimension(500,500));
         this.setBackground(Color.black);
         coca = new ImageIcon("cocalata.png").getImage();
