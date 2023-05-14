@@ -17,7 +17,7 @@ public class PanelComprador extends JPanel implements ActionListener{
     Image imageaux;
     protected Moneda mon;
     protected String saldo;
-    protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarBot,VueltoBot,ComprarAgainBot,ExitButton;
+    protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarBot,AgregaMonBot,VueltoBot,ComprarAgainBot,ExitButton;
     protected ButtonGroup MonedasBots;
     protected JRadioButton Moneda100Bot,Moneda500Bot,Moneda1000Bot,Moneda1500Bot;
     public PanelComprador(){
@@ -52,33 +52,42 @@ public class PanelComprador extends JPanel implements ActionListener{
         MonedasBots.add(Moneda1500Bot);
         this.add(Moneda1500Bot);
 
-        CocaColaBot = new JButton("CocaCola");
-        CocaColaBot.setBounds(650,110,150,150);
+        CocaColaBot = new JButton();
+        CocaColaBot.setBounds(316,230,60,40);
         CocaColaBot.addActionListener(this);
         CocaColaBot.setFocusable(false);
+        CocaColaBot.setIcon(new ImageIcon("cocalogo1.png"));
         this.add(CocaColaBot);
-        SpriteBot = new JButton("Sprite");
-        SpriteBot.setBounds(800,110,150,150);
+        SpriteBot = new JButton();
+        SpriteBot.setBounds(316,270,60,40);
         SpriteBot.addActionListener(this);
         SpriteBot.setFocusable(false);
+        SpriteBot.setIcon(new ImageIcon("spritelogo.png"));
         this.add(SpriteBot);
-        SnickersBot = new JButton("Snickers");
-        SnickersBot.setBounds(650,260,150,150);
+        SnickersBot = new JButton();
+        SnickersBot.setBounds(316,310,60,40);
         SnickersBot.addActionListener(this);
         SnickersBot.setFocusable(false);
+        SnickersBot.setIcon(new ImageIcon("snickerslogo.png"));
         this.add(SnickersBot);
-        Super8Bot = new JButton("Super 8");
-        Super8Bot.setBounds(800,260,150,150);
+        Super8Bot = new JButton();
+        Super8Bot.setBounds(316,350,60,40);
         Super8Bot.addActionListener(this);
         Super8Bot.setFocusable(false);
+        Super8Bot.setIcon(new ImageIcon("super8logo.png"));
         this.add(Super8Bot);
+        AgregaMonBot = new JButton();
+        AgregaMonBot.setBounds(330, 200, 30, 20);
+        AgregaMonBot.addActionListener(this);
+        AgregaMonBot.setFocusable(false);
+        this.add(AgregaMonBot);
         ComprarBot = new JButton("Confirmar compra");
         ComprarBot.setBounds(670,440,200,50);
         ComprarBot.addActionListener(this);
         ComprarBot.setFocusable(false);
         this.add(ComprarBot);
-        VueltoBot = new JButton("Sacar vuelto");
-        VueltoBot.setBounds(920,440,200,50);
+        VueltoBot = new JButton();
+        VueltoBot.setBounds(330, 465, 30, 20);
         VueltoBot.addActionListener(this);
         VueltoBot.setFocusable(false);
         this.add(VueltoBot);
@@ -95,6 +104,7 @@ public class PanelComprador extends JPanel implements ActionListener{
 
         timer = new Timer(1000,null);
         timer.start();
+
         this.setLayout(null);
 
         this.setSize(1280,1024);
@@ -144,6 +154,17 @@ public class PanelComprador extends JPanel implements ActionListener{
                 System.out.println("Super 8");
                 auxCompra=1;
             }
+            if (cualP!=0){
+                try {
+                    com = new Comprador(mon,cualP,exp);
+                } catch (PagoIncorrectoException ex) {
+                    throw new RuntimeException(ex);
+                } catch (NoHayProductoException ex) {
+                    throw new RuntimeException(ex);
+                } catch (PagoInsuficienteException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
         }else{
             if (e.getSource()==ComprarBot){
                 try {
@@ -155,7 +176,6 @@ public class PanelComprador extends JPanel implements ActionListener{
                 } catch (PagoInsuficienteException ex) {
                     throw new RuntimeException(ex);
                 }
-                System.out.println(com.queConsumio()+" $"+com.cuantoVuelto());
                 switch (cualP){
                     case 1:  imageaux = p.coca;getGraphics().drawImage(imageaux,105,530,null); break;
                     case 2:  imageaux = p.sprite;getGraphics().drawImage(imageaux,90,530,null); break;
@@ -164,15 +184,9 @@ public class PanelComprador extends JPanel implements ActionListener{
                     default: break;
                 }
             }
-            if (e.getSource()==ComprarAgainBot){
-                auxCompra=0;
-
-            }
         }
         if (e.getSource()==VueltoBot){
-            int Vuelto = 0;
-            Vuelto = Vuelto + com.cuantoVuelto();
-
+            System.out.println(com.cuantoVuelto());
         }
         if (e.getSource()==ExitButton){
             System.exit(0);

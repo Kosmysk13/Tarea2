@@ -6,17 +6,8 @@ public class PanelExpendedor extends JPanel{
     protected PanelDepP pdb;
     protected int[] Xs= {381,381,420,420};
     protected int[] Ys= {80,660,620,120};
-
-    Image cocalogo;
-    Image spritelogo;
-    Image snickerslogo;
-    Image super8logo;
     public PanelExpendedor(){
         pdb = new PanelDepP();
-        cocalogo = new ImageIcon("cocalogo1.png").getImage();
-        spritelogo = new ImageIcon("spritelogo.png").getImage();
-        snickerslogo = new ImageIcon("snickerslogo.png").getImage();
-        super8logo = new ImageIcon("super8logo.png").getImage();
     }
     public void paint (Graphics g){
         super.paint(g);
@@ -45,13 +36,6 @@ public class PanelExpendedor extends JPanel{
         g.setColor(Color.black);
         g.drawRect(93, 520, 150, 130);
         g.setColor(Color.white);
-        g.fillRect(316,230,60,160);
-        g.drawImage(cocalogo,319,232,null);
-        g.drawImage(spritelogo,319,272,null);
-        g.drawImage(snickerslogo,319,312,null);
-        g.setColor(Color.black);
-        g.fillRect(316,350,60,40);
-        g.drawImage(super8logo,319,352,null);
         g.drawRect(316,230,60,160);
         g.drawLine(316,270,376,270);
         g.drawLine(316,310,376,310);
