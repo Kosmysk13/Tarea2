@@ -7,18 +7,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class PanelComprador extends JPanel implements ActionListener, MouseListener {
+public class PanelComprador extends JPanel implements ActionListener{
     Comprador com=null;
     Expendedor exp = new Expendedor();
     int cualP=0;
     int auxCompra=0;
+    Timer timer;
+    PanelDepP p;
+    Image imageaux;
     protected Moneda mon;
-    protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarBot,ComprarAgainBot,ExitButton;
+    protected String saldo;
+    protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarBot,VueltoBot,ComprarAgainBot,ExitButton;
     protected ButtonGroup MonedasBots;
     protected JRadioButton Moneda100Bot,Moneda500Bot,Moneda1000Bot,Moneda1500Bot;
     public PanelComprador(){
+        p = new PanelDepP();
         MonedasBots = new ButtonGroup();
-        //pb = new PanelDepB();
         Moneda100Bot = new JRadioButton("Moneda 100");
         Moneda100Bot.setBounds(1000,110,150,75);
         Moneda100Bot.addActionListener(this);
@@ -38,7 +42,6 @@ public class PanelComprador extends JPanel implements ActionListener, MouseListe
         Moneda1000Bot.addActionListener(this);
         Moneda1000Bot.setFocusable(false);
         Moneda1000Bot.setBackground(new Color(205,225,243));
-
         MonedasBots.add(Moneda1000Bot);
         this.add(Moneda1000Bot);
         Moneda1500Bot = new JRadioButton("Moneda 1500");
@@ -48,6 +51,7 @@ public class PanelComprador extends JPanel implements ActionListener, MouseListe
         Moneda1500Bot.setBackground(new Color(205,225,243));
         MonedasBots.add(Moneda1500Bot);
         this.add(Moneda1500Bot);
+
         CocaColaBot = new JButton("CocaCola");
         CocaColaBot.setBounds(650,110,150,150);
         CocaColaBot.addActionListener(this);
@@ -69,10 +73,15 @@ public class PanelComprador extends JPanel implements ActionListener, MouseListe
         Super8Bot.setFocusable(false);
         this.add(Super8Bot);
         ComprarBot = new JButton("Confirmar compra");
-        ComprarBot.setBounds(695,440,400,50);
+        ComprarBot.setBounds(670,440,200,50);
         ComprarBot.addActionListener(this);
         ComprarBot.setFocusable(false);
         this.add(ComprarBot);
+        VueltoBot = new JButton("Sacar vuelto");
+        VueltoBot.setBounds(920,440,200,50);
+        VueltoBot.addActionListener(this);
+        VueltoBot.setFocusable(false);
+        this.add(VueltoBot);
         ComprarAgainBot = new JButton("Comprar nuevamente");
         ComprarAgainBot.setBounds(670,510,200,50);
         ComprarAgainBot.addActionListener(this);
@@ -81,25 +90,32 @@ public class PanelComprador extends JPanel implements ActionListener, MouseListe
         ExitButton = new JButton("Salir");
         ExitButton.setBounds(920,510,200,50);
         ExitButton.addActionListener(this);
+        ExitButton.setFocusable(false);
         this.add(ExitButton);
 
+        timer = new Timer(1000,null);
+        timer.start();
         this.setLayout(null);
 
         this.setSize(1280,1024);
         this.setBackground(new Color(205,225,243));
         this.setVisible(true);
     }
-    public void paint (Graphics g1){
-        g1.setColor(new Color(247, 220, 85));
-        g1.fillRect(600, 80, 600, 500);
-        g1.setColor(Color.black);
-        g1.drawRect(600, 80, 600, 500);
-        g1.drawRect(999, 109, 151, 301);
+    public void paint (Graphics g){
+        super.paint(g);
+        g.setColor(new Color(247, 220, 85));
+        g.fillRect(600, 80, 600, 500);
+        g.setColor(Color.black);
+        g.drawRect(600, 80, 600, 500);
+        g.drawRect(999, 109, 151, 301);
+        g.drawRect(649, 109, 301, 301);
+        g.setColor(new Color(247, 220, 85));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (auxCompra==0){
+            int x=0;
             if (e.getSource()==Moneda100Bot){
                 mon = new Moneda100();
             }else if (e.getSource()==Moneda500Bot){
@@ -139,38 +155,28 @@ public class PanelComprador extends JPanel implements ActionListener, MouseListe
                 } catch (PagoInsuficienteException ex) {
                     throw new RuntimeException(ex);
                 }
-                System.out.println(com.queConsumio());
+                System.out.println(com.queConsumio()+" $"+com.cuantoVuelto());
+                switch (cualP){
+                    case 1:  imageaux = p.coca;getGraphics().drawImage(imageaux,105,530,null); break;
+                    case 2:  imageaux = p.sprite;getGraphics().drawImage(imageaux,90,530,null); break;
+                    case 3:  imageaux = p.snickers;getGraphics().drawImage(imageaux,105,530,null); break;
+                    case 4:  imageaux = p.super8;getGraphics().drawImage(imageaux,100,490,null); break;
+                    default: break;
+                }
             }
             if (e.getSource()==ComprarAgainBot){
                 auxCompra=0;
+
             }
+        }
+        if (e.getSource()==VueltoBot){
+            int Vuelto = 0;
+            Vuelto = Vuelto + com.cuantoVuelto();
+
         }
         if (e.getSource()==ExitButton){
             System.exit(0);
         }
-    }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
     }
 }
