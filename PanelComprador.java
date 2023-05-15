@@ -15,26 +15,24 @@ public class PanelComprador extends JPanel implements ActionListener{
     int auxCompra=0;
     Timer timer;
     PanelDepP pdp;
-    PanelDepM pdm;
     Image imageaux;
-    ImageIcon Mon500,Mon1000,Mon1500;
+    ImageIcon Mon500,Mon1000,Mon1500,Fondo;
     protected Moneda mon,monaux,monvu;
     protected int saldo,vuelto;
+    int i=0,j=0,auxk,auxl;
     protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarBot,AgregaMonBot,VueltoBot,ComprarAgainBot,ExitButton;
     protected JButton Moneda500Bot,Moneda1000Bot,Moneda1500Bot;
-    JRadioButton MonedaPago;
+    JRadioButton[][] MonedaPago=new JRadioButton[6][8];
     int xposm,xposmv,yposm,yposmv;
     public PanelComprador(){
         pdp = new PanelDepP();
-        pdm = new PanelDepM();
-        xposmv=670;
         xposm=670;
         yposm=150;
-        yposmv=350;
 
         Mon500 = new ImageIcon("Moneda500.png");
         Mon1000 = new ImageIcon("Moneda1000.png");
         Mon1500 = new ImageIcon("Moneda1500.png");
+        Fondo = new ImageIcon("Fondo.png");
 
         Moneda500Bot = new JButton("Moneda 500");
         Moneda500Bot.setBounds(1000,110,150,75);
@@ -118,47 +116,85 @@ public class PanelComprador extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (auxCompra==0){
+            if (xposm==915){
+                xposm=670;
+                yposm+=45;
+            }
+            if (xposmv==915){
+                xposmv=670;
+                yposmv-=45;
+            }
             if (e.getSource()==Moneda500Bot){
-                monaux = new Moneda500();
-                //pdm.addMon(monaux,1);
-                //pdm.paint(getGraphics());
-                MonedaPago = new JRadioButton();
-                MonedaPago.setBounds(xposm,yposm,35,35);
-                MonedaPago.setIcon(Mon500);
-                MonedaPago.addActionListener(this);
-                MonedaPago.setFocusable(false);
-                MonedaPago.setBackground(new Color(247, 220, 85));
-                this.add(MonedaPago);
+                if (j==7){
+                    j=0;
+                    i++;
+                }
+                MonedaPago[i][j] = new JRadioButton();
+                MonedaPago[i][j].setBounds(xposm,yposm,35,35);
+                MonedaPago[i][j].setIcon(Mon500);
+                MonedaPago[i][j].addActionListener(this);
+                MonedaPago[i][j].setFocusable(false);
+                MonedaPago[i][j].setBackground(new Color(247, 220, 85));
+                this.add(MonedaPago[i][j]);
+                j++;
                 xposm+=35;
             }else if (e.getSource()==Moneda1000Bot){
-                monaux = new Moneda1000();
-                //pdm.addMon(monaux,1);
-                //pdm.paint(getGraphics());
-                MonedaPago = new JRadioButton();
-                MonedaPago.setBounds(xposm,yposm,35,35);
-                MonedaPago.setIcon(Mon1000);
-                MonedaPago.addActionListener(this);
-                MonedaPago.setFocusable(false);
-                MonedaPago.setBackground(new Color(247, 220, 85));
-                this.add(MonedaPago);
+                if (j==7){
+                    j=0;
+                    i++;
+                }
+                MonedaPago[i][j] = new JRadioButton();
+                MonedaPago[i][j].setBounds(xposm,yposm,35,35);
+                MonedaPago[i][j].setIcon(Mon1000);
+                MonedaPago[i][j].addActionListener(this);
+                MonedaPago[i][j].setFocusable(false);
+                MonedaPago[i][j].setBackground(new Color(247, 220, 85));
+                this.add(MonedaPago[i][j]);
+                j++;
                 xposm+=35;
             }else if (e.getSource()==Moneda1500Bot){
-                monaux = new Moneda1500();
-                //pdm.addMon(monaux,1);
-                //pdm.paint(getGraphics());
-                MonedaPago = new JRadioButton();
-                MonedaPago.setBounds(xposm,yposm,35,35);
-                MonedaPago.setIcon(Mon1500);
-                MonedaPago.addActionListener(this);
-                MonedaPago.setFocusable(false);
-                MonedaPago.setBackground(new Color(247, 220, 85));
-                this.add(MonedaPago);
+                if (j==7){
+                    j=0;
+                    i++;
+                }
+                MonedaPago[i][j] = new JRadioButton();
+                MonedaPago[i][j].setBounds(xposm,yposm,35,35);
+                MonedaPago[i][j].setIcon(Mon1500);
+                MonedaPago[i][j].addActionListener(this);
+                MonedaPago[i][j].setFocusable(false);
+                MonedaPago[i][j].setBackground(new Color(247, 220, 85));
+                this.add(MonedaPago[i][j]);
+                j++;
                 xposm+=35;
             }
         }
+        for (int k=0;k<6;k++){
+            for (int l=0;l<6;l++){
+                if (e.getSource()==MonedaPago[k][l]){
+                    if (MonedaPago[k][l].getIcon()==Mon500){
+                        monaux = new Moneda500();
+                        auxk=k;
+                        auxl=l;
+                        System.out.println("Flag500");
+                    }else if (MonedaPago[k][l].getIcon()==Mon1000){
+                        monaux = new Moneda1000();
+                        auxk=k;
+                        auxl=l;
+                        System.out.println("Flag1000");
+                    }else if (MonedaPago[k][l].getIcon()==Mon1500){
+                        monaux = new Moneda1500();
+                        auxk=k;
+                        auxl=l;
+                        System.out.println("Flag1500");
+                    }
+                }
+            }
+        }
+
         if (e.getSource()==AgregaMonBot){
             System.out.println("Se agrega moneda: " + monaux.getSerie());
             mon = monaux;
+            MonedaPago[auxk][auxl].setIcon(Fondo);
         }
         if (auxCompra==0&&mon!=null){
             if (e.getSource()==CocaColaBot){
@@ -198,15 +234,39 @@ public class PanelComprador extends JPanel implements ActionListener{
         if (e.getSource()==VueltoBot){
             if (vuelto==500){
                 monvu = new Moneda500();
+                MonedaPago[i][j] = new JRadioButton();
+                MonedaPago[i][j].setBounds(xposm,yposm,35,35);
+                MonedaPago[i][j].setIcon(Mon500);
+                MonedaPago[i][j].addActionListener(this);
+                MonedaPago[i][j].setFocusable(false);
+                MonedaPago[i][j].setBackground(new Color(247, 220, 85));
+                this.add(MonedaPago[i][j]);
+                j++;
+                if (j==6){
+                    j=0;
+                    i++;
+                }
+                xposm+=35;
             }else if (vuelto==1000){
                 monvu = new Moneda1000();
+                MonedaPago[i][j] = new JRadioButton();
+                MonedaPago[i][j].setBounds(xposm,yposm,35,35);
+                MonedaPago[i][j].setIcon(Mon1000);
+                MonedaPago[i][j].addActionListener(this);
+                MonedaPago[i][j].setFocusable(false);
+                MonedaPago[i][j].setBackground(new Color(247, 220, 85));
+                this.add(MonedaPago[i][j]);
+                j++;
+                if (j==6){
+                    j=0;
+                    i++;
+                }
+                xposm+=35;
             }else if (vuelto==0){
                 monvu = null;
             }
             if (monvu!=null){
                 System.out.println("Se retira vuelto: $" + monvu.getSerie());
-                pdm.addMon(monvu,2);
-                pdm.paint(getGraphics());
             }else {
                 System.out.println("No hay vuelto");
             }
