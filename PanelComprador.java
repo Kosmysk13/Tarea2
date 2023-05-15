@@ -82,21 +82,11 @@ public class PanelComprador extends JPanel implements ActionListener{
         AgregaMonBot.addActionListener(this);
         AgregaMonBot.setFocusable(false);
         this.add(AgregaMonBot);
-        ComprarBot = new JButton("Confirmar compra");
-        ComprarBot.setBounds(670,440,200,50);
-        ComprarBot.addActionListener(this);
-        ComprarBot.setFocusable(false);
-        this.add(ComprarBot);
         VueltoBot = new JButton();
         VueltoBot.setBounds(330, 465, 30, 20);
         VueltoBot.addActionListener(this);
         VueltoBot.setFocusable(false);
         this.add(VueltoBot);
-        ComprarAgainBot = new JButton("Comprar nuevamente");
-        ComprarAgainBot.setBounds(670,510,200,50);
-        ComprarAgainBot.addActionListener(this);
-        ComprarAgainBot.setFocusable(false);
-        this.add(ComprarAgainBot);
         ExitButton = new JButton("Salir");
         ExitButton.setBounds(920,510,200,50);
         ExitButton.addActionListener(this);
@@ -138,39 +128,24 @@ public class PanelComprador extends JPanel implements ActionListener{
             }
         }
         if (e.getSource()==AgregaMonBot){
+            System.out.println("Se agrega moneda: " + monaux.getSerie());
             mon = monaux;
         }
         if (auxCompra==0&&mon!=null){
             if (e.getSource()==CocaColaBot){
                 cualP = 1;
-                System.out.println("Coca");
                 auxCompra=1;
             }else if (e.getSource()==SpriteBot){
                 cualP = 2;
-                System.out.println("Sprite");
                 auxCompra=1;
             }else if (e.getSource()==SnickersBot){
                 cualP = 3;
-                System.out.println("Snickers");
                 auxCompra=1;
             }else if (e.getSource()==Super8Bot){
                 cualP = 4;
-                System.out.println("Super 8");
                 auxCompra=1;
             }
             if (cualP!=0){
-                try {
-                    com = new Comprador(mon,cualP,exp);
-                } catch (PagoIncorrectoException ex) {
-                    throw new RuntimeException(ex);
-                } catch (NoHayProductoException ex) {
-                    throw new RuntimeException(ex);
-                } catch (PagoInsuficienteException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        }else{
-            if (e.getSource()==ComprarBot){
                 try {
                     com = new Comprador(mon,cualP,exp);
                 } catch (PagoIncorrectoException ex) {
@@ -187,6 +162,7 @@ public class PanelComprador extends JPanel implements ActionListener{
                     case 4:  imageaux = p.super8;getGraphics().drawImage(imageaux,100,490,null); break;
                     default: break;
                 }
+                System.out.println("Se recibe: "+com.queConsumio()+" Numero de serie: "+com.cualSerie());
             }
         }
         if (e.getSource()==VueltoBot){
@@ -197,6 +173,13 @@ public class PanelComprador extends JPanel implements ActionListener{
             }else if (com.cuantoVuelto()==0){
                 monvu = null;
             }
+            if (monvu!=null){
+                System.out.println("Se retira vuelto: $" + monvu.getSerie());
+            }else {
+                System.out.println("No hay vuelto");
+            }
+            auxCompra=0;
+            cualP=0;
         }
         if (e.getSource()==ExitButton){
             System.exit(0);

@@ -5,7 +5,7 @@ package org.example;
  */
 public class Comprador{
     private String sonido=null;
-    private int vuelto=0;
+    private int vuelto=0,serie;
 
     /**
      *
@@ -22,6 +22,7 @@ public class Comprador{
         exp.comprarProducto(m,cualProducto);
         if ((p = exp.getProducto())!=null){
             sonido = p.consumir();
+            serie = p.getSerie(p);
         }
         while ((m1 = exp.getVuelto())!=null){
             vuelto = vuelto + m1.getValor();
@@ -41,5 +42,8 @@ public class Comprador{
      */
     public String queConsumio(){
         return sonido;
+    }
+    public int cualSerie(){
+        return serie;
     }
 }
