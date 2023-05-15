@@ -11,12 +11,13 @@ public class PanelComprador extends JPanel implements ActionListener{
     Comprador com=null;
     Expendedor exp = new Expendedor();
     int cualP=0;
+    int cont[]={0,0,0,0};
     int auxCompra=0;
     Timer timer;
     PanelDepP p;
     Image imageaux;
-    protected Moneda mon;
-    protected String saldo;
+    protected Moneda mon,monaux,monvu;
+    protected int saldo;
     protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarBot,AgregaMonBot,VueltoBot,ComprarAgainBot,ExitButton;
     protected ButtonGroup MonedasBots;
     protected JRadioButton Moneda100Bot,Moneda500Bot,Moneda1000Bot,Moneda1500Bot;
@@ -127,16 +128,19 @@ public class PanelComprador extends JPanel implements ActionListener{
         if (auxCompra==0){
             int x=0;
             if (e.getSource()==Moneda100Bot){
-                mon = new Moneda100();
+                monaux = new Moneda100();
             }else if (e.getSource()==Moneda500Bot){
-                mon = new Moneda500();
+                monaux = new Moneda500();
             }else if (e.getSource()==Moneda1000Bot){
-                mon = new Moneda1000();
+                monaux = new Moneda1000();
             }else if (e.getSource()==Moneda1500Bot){
-                mon = new Moneda1500();
+                monaux = new Moneda1500();
             }
         }
-        if (auxCompra==0){
+        if (e.getSource()==AgregaMonBot){
+            mon = monaux;
+        }
+        if (auxCompra==0&&mon!=null){
             if (e.getSource()==CocaColaBot){
                 cualP = 1;
                 System.out.println("Coca");
@@ -186,7 +190,13 @@ public class PanelComprador extends JPanel implements ActionListener{
             }
         }
         if (e.getSource()==VueltoBot){
-            System.out.println(com.cuantoVuelto());
+            if (com.cuantoVuelto()==500){
+                monvu = new Moneda500();
+            }else if (com.cuantoVuelto()==1000){
+                monvu = new Moneda1000();
+            }else if (com.cuantoVuelto()==0){
+                monvu = null;
+            }
         }
         if (e.getSource()==ExitButton){
             System.exit(0);

@@ -4,8 +4,8 @@ package org.example;
  * Crea y almacena las variables a utilizar, Expendedor se encarga de almacenar y suministrar productos y monedas
  */
 public class Expendedor{
-    protected int preciosB;
-    protected int preciosD;
+    protected static final int preciosB=1000;
+    protected static final int preciosD=500;
     protected Producto p;
 
     private DepositoB depcoca;
@@ -26,8 +26,6 @@ public class Expendedor{
      * precioD Indica el precio de los dulces por igual
      */
     public Expendedor(){
-        preciosB = 1000;
-        preciosD = 500;
         depcoca = new DepositoB();
         depsprite = new DepositoB();
         depsnickers = new DepositoD();
