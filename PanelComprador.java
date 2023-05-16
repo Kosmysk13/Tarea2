@@ -194,6 +194,7 @@ public class PanelComprador extends JPanel implements ActionListener{
         if (e.getSource()==AgregaMonBot){
             System.out.println("Se agrega moneda: " + monaux.getSerie());
             mon = monaux;
+            monaux = null;
             MonedaPago[auxk][auxl].setIcon(Fondo);
         }
         if (auxCompra==0&&mon!=null){
@@ -229,6 +230,9 @@ public class PanelComprador extends JPanel implements ActionListener{
                 }
                 vuelto=com.cuantoVuelto();
                 System.out.println("Se recibe: "+com.queConsumio()+" Numero de serie: "+com.cualSerie());
+                auxCompra=0;
+                cualP=0;
+                mon=null;
             }
         }
         if (e.getSource()==VueltoBot){
@@ -271,8 +275,6 @@ public class PanelComprador extends JPanel implements ActionListener{
                 System.out.println("No hay vuelto");
             }
             vuelto=0;
-            auxCompra=0;
-            cualP=0;
         }
         if (e.getSource()==ExitButton){
             System.exit(0);
