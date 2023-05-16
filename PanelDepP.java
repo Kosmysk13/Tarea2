@@ -36,10 +36,10 @@ public class PanelDepP extends JPanel{
         snickers = new ImageIcon("snickers.png").getImage();
         super8 = new ImageIcon("super8.png").getImage();
     }
-    public void move(int cualP,int cont) {
+    public void mover(int cualP,int cont) {
         x[cualP][cont]=96;
         y[cualP][cont]=540;
-        super.repaint();
+        repaint();
     }
     public void paint (Graphics g){
         super.paint(g);
