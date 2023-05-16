@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 
 public class PanelComprador extends JPanel implements ActionListener{
     Comprador com=null;
@@ -18,7 +19,7 @@ public class PanelComprador extends JPanel implements ActionListener{
     ImageIcon Mon500,Mon1000,Mon1500,Fondo;
     protected Moneda mon,monaux,monvu;
     protected int saldo,vuelto;
-    int i=0,j=0,auxk,auxl;
+    int i=0,j=-1,auxk,auxl;
     protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,ComprarBot,AgregaMonBot,VueltoBot,ComprarAgainBot,ExitButton;
     protected JButton Moneda500Bot,Moneda1000Bot,Moneda1500Bot;
     JRadioButton[][] MonedaPago=new JRadioButton[6][8];
@@ -28,6 +29,8 @@ public class PanelComprador extends JPanel implements ActionListener{
         this.add(pdp);
         xposm=670;
         yposm=150;
+
+
 
         Mon500 = new ImageIcon("Moneda500.png");
         Mon1000 = new ImageIcon("Moneda1000.png");
@@ -125,6 +128,7 @@ public class PanelComprador extends JPanel implements ActionListener{
                 yposmv-=45;
             }
             if (e.getSource()==Moneda500Bot){
+                j++;
                 if (j==7){
                     j=0;
                     i++;
@@ -136,9 +140,9 @@ public class PanelComprador extends JPanel implements ActionListener{
                 MonedaPago[i][j].setFocusable(false);
                 MonedaPago[i][j].setBackground(new Color(247, 220, 85));
                 this.add(MonedaPago[i][j]);
-                j++;
                 xposm+=35;
             }else if (e.getSource()==Moneda1000Bot){
+                j++;
                 if (j==7){
                     j=0;
                     i++;
@@ -150,9 +154,9 @@ public class PanelComprador extends JPanel implements ActionListener{
                 MonedaPago[i][j].setFocusable(false);
                 MonedaPago[i][j].setBackground(new Color(247, 220, 85));
                 this.add(MonedaPago[i][j]);
-                j++;
                 xposm+=35;
             }else if (e.getSource()==Moneda1500Bot){
+                j++;
                 if (j==7){
                     j=0;
                     i++;
@@ -164,12 +168,11 @@ public class PanelComprador extends JPanel implements ActionListener{
                 MonedaPago[i][j].setFocusable(false);
                 MonedaPago[i][j].setBackground(new Color(247, 220, 85));
                 this.add(MonedaPago[i][j]);
-                j++;
                 xposm+=35;
             }
         }
         for (int k=0;k<6;k++){
-            for (int l=0;l<6;l++){
+            for (int l=0;l<7;l++){
                 if (e.getSource()==MonedaPago[k][l]){
                     if (MonedaPago[k][l].getIcon()==Mon500){
                         monaux = new Moneda500();
@@ -184,15 +187,80 @@ public class PanelComprador extends JPanel implements ActionListener{
                         auxk=k;
                         auxl=l;
                     }
+                    System.out.println(auxk);
+                    System.out.println(auxl);
+                    System.out.println("i: "+i);
+                    System.out.println("j: "+j);
                 }
             }
         }
 
         if (e.getSource()==AgregaMonBot){
+            /*for (int b=auxl+1;b<8;b++){
+                MonedaPago[auxk][b-1].setIcon(MonedaPago[auxk][b].getIcon());
+            }*/
+            if (auxk==i){
+                if (auxl==6||auxl==j){
+                }else{
+                    for (int b=auxl+1;b<j+1;b++){
+                        MonedaPago[auxk][b-1].setIcon(MonedaPago[auxk][b].getIcon());
+                    }
+                }
+            }else{
+                if (j==6){
+                    if (auxl==6){
+                    }else{
+                        for (int b=auxl+1;b<j+1;b++){
+                            MonedaPago[auxk][b-1].setIcon(MonedaPago[auxk][b].getIcon());
+                        }
+                    }
+                    for (int a=auxk+1;a<i+1;a++){
+                        for (int b=1;b<j+1;b++){
+                            MonedaPago[a][b-1].setIcon(MonedaPago[a][b].getIcon());
+                        }
+                    }
+                }else{
+                    if (auxl==6){
+                        MonedaPago[auxk][auxl].setIcon(MonedaPago[auxk+1][0].getIcon());
+                    }else{
+                        for (int b=auxl;b<7;b++){
+                            if (b==6){
+                                MonedaPago[auxk][b].setIcon(MonedaPago[auxk+1][0].getIcon());
+                            }else{
+                                MonedaPago[auxk][b].setIcon(MonedaPago[auxk][b+1].getIcon());
+                            }
+                        }
+                    }
+                    for (int a=auxk+1;a<i+1;a++){
+                        for (int b=0;b<j+1;b++){
+                            if (b==6){
+                                MonedaPago[a][b].setIcon(MonedaPago[a+1][0].getIcon());
+                            }else{
+                                if (MonedaPago[a][b+1]!=null){
+                                    MonedaPago[a][b].setIcon(MonedaPago[a][b+1].getIcon());
+                                }else{
+
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+            }
+
             System.out.println("Se agrega moneda: " + monaux.getSerie());
             mon = monaux;
             monaux = null;
-            MonedaPago[auxk][auxl].setIcon(Fondo);
+            System.out.println(i);
+            System.out.println(j);
+            MonedaPago[i][j].setIcon(Fondo);
+            /*if(i!=0&&j==0){
+                i--;
+                j=6;
+            }else{
+                j--;
+            }*/
         }
         if (auxCompra==0&&mon!=null){
             if (e.getSource()==CocaColaBot){
