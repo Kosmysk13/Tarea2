@@ -15,7 +15,6 @@ public class PanelComprador extends JPanel implements ActionListener{
     int auxCompra=0;
     Timer timer;
     PanelDepP pdp;
-    Image imageaux;
     ImageIcon Mon500,Mon1000,Mon1500,Fondo;
     protected Moneda mon,monaux,monvu;
     protected int saldo,vuelto;
@@ -25,7 +24,8 @@ public class PanelComprador extends JPanel implements ActionListener{
     JRadioButton[][] MonedaPago=new JRadioButton[6][8];
     int xposm,xposmv,yposm,yposmv;
     public PanelComprador(){
-        pdp = new PanelDepP();
+        pdp = new PanelDepP(80,80);
+        this.add(pdp);
         xposm=670;
         yposm=150;
 
@@ -175,17 +175,14 @@ public class PanelComprador extends JPanel implements ActionListener{
                         monaux = new Moneda500();
                         auxk=k;
                         auxl=l;
-                        System.out.println("Flag500");
                     }else if (MonedaPago[k][l].getIcon()==Mon1000){
                         monaux = new Moneda1000();
                         auxk=k;
                         auxl=l;
-                        System.out.println("Flag1000");
                     }else if (MonedaPago[k][l].getIcon()==Mon1500){
                         monaux = new Moneda1500();
                         auxk=k;
                         auxl=l;
-                        System.out.println("Flag1500");
                     }
                 }
             }
@@ -201,15 +198,23 @@ public class PanelComprador extends JPanel implements ActionListener{
             if (e.getSource()==CocaColaBot){
                 cualP = 1;
                 auxCompra=1;
+                pdp.move(cualP-1,cont[0]);
+                cont[0]++;
             }else if (e.getSource()==SpriteBot){
                 cualP = 2;
                 auxCompra=1;
+                pdp.move(cualP-1,cont[1]);
+                cont[1]++;
             }else if (e.getSource()==SnickersBot){
                 cualP = 3;
                 auxCompra=1;
+                pdp.move(cualP-1,cont[2]);
+                cont[2]++;
             }else if (e.getSource()==Super8Bot){
                 cualP = 4;
                 auxCompra=1;
+                pdp.move(cualP-1,cont[3]);
+                cont[3]++;
             }
             if (cualP!=0){
                 try {
@@ -220,13 +225,6 @@ public class PanelComprador extends JPanel implements ActionListener{
                     throw new RuntimeException(ex);
                 } catch (PagoInsuficienteException ex) {
                     throw new RuntimeException(ex);
-                }
-                switch (cualP){
-                    case 1:  imageaux = pdp.coca;getGraphics().drawImage(imageaux,105,530,null); break;
-                    case 2:  imageaux = pdp.sprite;getGraphics().drawImage(imageaux,90,530,null); break;
-                    case 3:  imageaux = pdp.snickers;getGraphics().drawImage(imageaux,105,530,null); break;
-                    case 4:  imageaux = pdp.super8;getGraphics().drawImage(imageaux,100,490,null); break;
-                    default: break;
                 }
                 vuelto=com.cuantoVuelto();
                 System.out.println("Se recibe: "+com.queConsumio()+" Numero de serie: "+com.cualSerie());
