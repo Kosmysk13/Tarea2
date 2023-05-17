@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 public class PanelExpendedor extends JPanel{
     protected PanelDepP pdp;
+    Timer timer;
     protected int[] Xs= {381,381,420,420};
     protected int[] Ys= {80,660,620,120};
     protected int xExp=80,yExp=80;

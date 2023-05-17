@@ -2,6 +2,9 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class PanelDepP extends JPanel{
     int xExp,yExp;
     int[][] y=new int[4][3];
@@ -11,12 +14,16 @@ public class PanelDepP extends JPanel{
     Image snickers;
     Image super8;
     int auxinicial=0,auxj=1;
+    Timer timer;
     public PanelDepP(int xExp, int yExp){
         this.xExp=xExp+13;
         this.yExp=yExp+13;
+
+        timer = new Timer(1000,null);
+        timer.start();
         if (auxinicial==0){
             for(int i=0;i<3;i++){
-                y[0][i]=yExp+2;
+                y[0][i]=this.yExp;
                 y[1][i]=195;
                 y[2][i]=295;
                 y[3][i]=344;
@@ -25,7 +32,7 @@ public class PanelDepP extends JPanel{
                 x[3][i]=55*auxj;
                 auxj++;
             }
-            x[2][0]=xExp;
+            x[2][0]=this.xExp;
             x[2][1]=156;
             x[2][2]=220;
             auxinicial=1;
@@ -35,14 +42,19 @@ public class PanelDepP extends JPanel{
         sprite = new ImageIcon("spritelata.png").getImage();
         snickers = new ImageIcon("snickers.png").getImage();
         super8 = new ImageIcon("super8.png").getImage();
+
+        this.setSize(1280,1024);
+        this.setBackground(null);
+        this.setVisible(true);
     }
     public void mover(int cualP,int cont) {
         x[cualP][cont]=96;
         y[cualP][cont]=540;
         repaint();
+        timer.stop();
     }
     public void paint (Graphics g){
-        super.paint(g);
+        //super.paint(g);
         g.setColor(new Color (199,219,219));
         g.fillRect(xExp, yExp, 220, 400);
         g.setColor(Color.black);

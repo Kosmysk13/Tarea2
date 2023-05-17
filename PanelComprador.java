@@ -94,8 +94,6 @@ public class PanelComprador extends JPanel implements ActionListener{
         ExitButton.setFocusable(false);
         this.add(ExitButton);
 
-        timer = new Timer(1000,null);
-        timer.start();
 
         this.setLayout(null);
 
