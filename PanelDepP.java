@@ -2,8 +2,10 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+/**
+ * Crea panel que contiene los productos dentro del Expendedor
+ */
 
 public class PanelDepP extends JPanel{
     int xExp,yExp;
@@ -15,6 +17,13 @@ public class PanelDepP extends JPanel{
     Image super8;
     int auxinicial=0,auxj=1;
     Timer timer;
+
+    /**
+     * Metodo constructor que se encarga de definir las posiciones iniciales, las variables y el timer
+     * Ademas define los limites del panel
+     * @param xExp Este parametro ayuda a definir las posiciones relativas del expendedor en el eje X
+     * @param yExp Este parametro ayuda a definir las posiciones relativas del expendedor en el eje Y
+     */
     public PanelDepP(int xExp, int yExp){
         this.xExp=xExp+13;
         this.yExp=yExp+13;
@@ -47,14 +56,24 @@ public class PanelDepP extends JPanel{
         this.setBackground(null);
         this.setVisible(true);
     }
+
+    /**
+     * Metodo que se encarga de mover un producto dentro del panel
+     * @param cualP Parametro que ayuda a elegir que producto se debe mover dentro del panel
+     * @param cont  Parametro contador que indica cuantas veces se ha retirado un producto, ayuda a mover el producto correcto
+     */
     public void mover(int cualP,int cont) {
         x[cualP][cont]=96;
         y[cualP][cont]=540;
         repaint();
         timer.stop();
     }
+
+    /**
+     * Metodo que se encarga de la representacion visual del panel
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     public void paint (Graphics g){
-        //super.paint(g);
         g.setColor(new Color (199,219,219));
         g.fillRect(xExp, yExp, 220, 400);
         g.setColor(Color.black);

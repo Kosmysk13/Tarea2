@@ -2,15 +2,28 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+
+/**
+ * Crea el panel del expendedor
+ */
 public class PanelExpendedor extends JPanel{
     protected PanelDepP pdp;
     Timer timer;
     protected int[] Xs= {381,381,420,420};
     protected int[] Ys= {80,660,620,120};
     protected int xExp=80,yExp=80;
+
+    /**
+     * Metodo constructor que crea instancia del panel de productos
+     */
     public PanelExpendedor(){
         pdp = new PanelDepP(xExp,yExp);
     }
+
+    /**
+     * Metodo que se encarga de la parte visual del panel
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     public void paint (Graphics g){
         super.paint(g);
         g.setColor(new Color(137,23,11));

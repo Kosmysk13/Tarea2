@@ -8,22 +8,30 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 
+/**
+ * Crea el panel comprador que contiene los botones con las acciones principales
+ */
+
 public class PanelComprador extends JPanel implements ActionListener{
     Comprador com=null;
     Expendedor exp = new Expendedor();
     int cualP=0;
     int cont[]={0,0,0,0};
     int auxCompra=0;
-    Timer timer;
     PanelDepP pdp;
     ImageIcon Mon500,Mon1000,Mon1500,Fondo;
     protected Moneda mon,monaux,monvu;
-    protected int saldo,vuelto;
+    protected int vuelto;
     int i=0,j=-1,auxk,auxl,auxsacamon=0;
     protected JButton CocaColaBot,SpriteBot,SnickersBot,Super8Bot,AgregaMonBot,VueltoBot,ExitButton;
     protected JButton Moneda500Bot,Moneda1000Bot,Moneda1500Bot;
     JRadioButton[][] MonedaPago=new JRadioButton[6][8];
     int xposm,yposm;
+
+    /**
+     * Metodo constructor que crea todos los recursos que se utilizaran, monedas, botones e imagenes
+     * Ademas define los limites del panel
+     */
     public PanelComprador(){
         pdp = new PanelDepP(80,80);
         this.add(pdp);
@@ -101,6 +109,11 @@ public class PanelComprador extends JPanel implements ActionListener{
         this.setBackground(new Color(205,225,243));
         this.setVisible(true);
     }
+
+    /**
+     * Metodo que se encarga de la parte visual del panel
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     public void paint (Graphics g){
         super.paint(g);
         g.setColor(new Color(247, 220, 85));
@@ -112,6 +125,10 @@ public class PanelComprador extends JPanel implements ActionListener{
         g.setColor(new Color(247, 220, 85));
     }
 
+    /**
+     * Metodo que acciona los botones dentro del panel
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (auxCompra==0){
